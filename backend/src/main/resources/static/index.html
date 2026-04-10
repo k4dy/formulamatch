@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FormulaMatch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="state-home" class="state">
+    <div class="home-auth-bar"><span id="home-auth-link"></span></div>
+    <div class="home-center">
+      <h1 class="logo">FormulaMatch</h1>
+      <p class="tagline">Find a cosmetic substitute by ingredient similarity</p>
+      <div class="search-box home-search-box">
+        <input id="home-input" type="text" placeholder="Nivea Soft, L'Oreal, AQUA…" autocomplete="off">
+        <button class="search-icon-btn" id="home-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <p class="home-desc">You love a product but it's too expensive. You saw someone use something you can't find locally. You want to stay with the same formula but the brand discontinued it. Search by product or brand and see what shares the same ingredients.</p>
+
+      <div class="home-stats">
+        <span><strong>99k</strong> products</span>
+        <span><strong>15k</strong> brands</span>
+        <span><strong>50k</strong> INCI substances</span>
+        <span><strong>5.3M</strong> similarity pairs</span>
+      </div>
+
+      <div class="home-examples-label">Try an example:</div>
+      <div class="home-examples">
+        <div class="home-example-card" onclick="goToProduct(48700)">
+          <span class="home-example-badge">5/5 match</span>
+          <div class="home-example-name">Cicaplast Baume B5</div>
+          <div class="home-example-brand">La Roche-Posay</div>
+        </div>
+      </div>
+
+      <p class="home-disclaimer">
+        This is a demo project. Data was collected in November 2024 and is not updated.
+        How the dataset was built and how ingredient matching works is described on
+        <a href="https://github.com/k4dy/formulamatch" target="_blank" rel="noopener">GitHub</a>.
+      </p>
+    </div>
+  </div>
+
+  <div id="state-account" class="state hidden">
+    <div class="top-bar">
+      <a href="#/" class="logo-small">FormulaMatch</a>
+    </div>
+    <main class="auth-main">
+      <div class="auth-card account-card">
+        <h2 class="account-title">My account</h2>
+        <div id="account-content"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="state-auth" class="state hidden">
+    <div class="top-bar">
+      <a href="#/" class="logo-small">FormulaMatch</a>
+    </div>
+    <main class="auth-main">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-register" onclick="switchTab('register')">Register</button>
+          <button class="auth-tab" id="tab-login" onclick="switchTab('login')">Login</button>
+        </div>
+        <form id="auth-form" onsubmit="submitAuth(event)">
+          <input id="auth-email" type="email" placeholder="Email" required autocomplete="email">
+          <input id="auth-password" type="password" placeholder="Password (min 8 characters)" required autocomplete="current-password">
+          <p id="auth-error" class="auth-error hidden"></p>
+          <button type="submit" id="auth-submit">Register</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <div id="state-results" class="state hidden">
+    <div class="top-bar">
+      <a href="#/" class="logo-small">FormulaMatch</a>
+      <div class="search-box top-search-box">
+        <input id="results-input" type="text" autocomplete="off">
+        <button class="search-icon-btn" id="results-btn" aria-label="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <span id="results-auth-link" class="top-auth-link"></span>
+    </div>
+    <main class="results-main">
+      <div id="results-status" class="status-line"></div>
+      <div id="results-list"></div>
+      <div id="results-more" class="more-row hidden">
+        <button id="results-more-btn">Load more</button>
+      </div>
+    </main>
+  </div>
+
+  <div id="state-product" class="state hidden">
+    <div class="top-bar">
+      <a href="#/" class="logo-small">FormulaMatch</a>
+      <button id="product-back-btn" class="back-btn">← Back</button>
+      <span id="product-auth-link" class="top-auth-link"></span>
+    </div>
+    <main class="product-main">
+      <div id="product-status" class="status-line"></div>
+      <div id="product-content"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
